@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!-- ==========================================================================
+     if-else.html - Topic 10: Selection: if / else
+     Sections: relational, if, else, elseif, logical, example
+     ========================================================================== -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selection: if / else - Java Code Review</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="if-else">
+  <header class="topbar">
+    <a class="back-btn" href="index.html">&lt;- Home</a>
+    <span class="topbar-title">Selection: if / else</span>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation"><span class="menu-bars" aria-hidden="true"></span></button>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="content">
+      <h1>Selection: if / else</h1>
+      <p class="lead">Selection lets a program choose between different paths. The
+        <code>if</code> statement runs code only when a condition is true.</p>
+
+      <!-- Section: relational -->
+      <section id="relational" class="section">
+        <h2>Relational Operators</h2>
+        <p>A condition compares two values with a relational operator and produces a
+          <code>boolean</code>.</p>
+        <table class="data-table">
+          <thead><tr><th>Operator</th><th>Meaning</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td><code>==</code></td><td>equal to</td><td><code>a == b</code></td></tr>
+            <tr><td><code>!=</code></td><td>not equal to</td><td><code>a != b</code></td></tr>
+            <tr><td><code>&gt;</code></td><td>greater than</td><td><code>a &gt; b</code></td></tr>
+            <tr><td><code>&lt;</code></td><td>less than</td><td><code>a &lt; b</code></td></tr>
+            <tr><td><code>&gt;=</code></td><td>greater than or equal</td><td><code>a &gt;= b</code></td></tr>
+            <tr><td><code>&lt;=</code></td><td>less than or equal</td><td><code>a &lt;= b</code></td></tr>
+          </tbody>
+        </table>
+        <div class="callout warning">
+          <strong>Careful:</strong> <code>=</code> assigns a value, while <code>==</code> compares
+          two values. Mixing them up is a very common bug.
+        </div>
+      </section>
+
+      <!-- Section: if -->
+      <section id="if" class="section">
+        <h2>The if Statement</h2>
+        <p>Syntax: <code>if (condition) { ... }</code>. The block runs only when the condition
+          is <code>true</code>.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">IfDemo.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">int score = 75;
+
+if (score &gt;= 60) {                       // the condition
+    System.out.println("Pass");          // runs only if the condition is true
+}</code></pre>
+        </figure>
+        <figure class="flowchart">
+          <svg viewBox="0 0 340 260" width="340" height="260" role="img" aria-label="if-else flowchart">
+            <defs>
+              <marker id="arr-if" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L8,3 L0,6 Z" fill="#475569"></path>
+              </marker>
+            </defs>
+            <g font-family="Segoe UI, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">
+              <ellipse cx="170" cy="22" rx="52" ry="16" fill="#dcfce7" stroke="#16a34a"></ellipse>
+              <text x="170" y="26">Start</text>
+              <line x1="170" y1="38" x2="170" y2="51" stroke="#475569" marker-end="url(#arr-if)"></line>
+              <polygon points="170,53 275,85 170,117 65,85" fill="#fef3c7" stroke="#d97706"></polygon>
+              <text x="170" y="89">condition?</text>
+              <text x="184" y="137" font-size="11" fill="#16a34a">true</text>
+              <line x1="170" y1="117" x2="170" y2="138" stroke="#475569" marker-end="url(#arr-if)"></line>
+              <rect x="100" y="140" width="140" height="44" rx="8" fill="#dbeafe" stroke="#2563eb"></rect>
+              <text x="170" y="166">run if-block</text>
+              <line x1="170" y1="184" x2="170" y2="214" stroke="#475569" marker-end="url(#arr-if)"></line>
+              <ellipse cx="170" cy="232" rx="52" ry="16" fill="#fee2e2" stroke="#dc2626"></ellipse>
+              <text x="170" y="236">End</text>
+              <text x="292" y="80" font-size="11" fill="#dc2626">false</text>
+              <line x1="275" y1="85" x2="315" y2="85" stroke="#475569"></line>
+              <line x1="315" y1="85" x2="315" y2="232" stroke="#475569"></line>
+              <line x1="315" y1="232" x2="224" y2="232" stroke="#475569" marker-end="url(#arr-if)"></line>
+            </g>
+          </svg>
+          <figcaption>Figure: the program branches on the condition, then continues.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Section: else -->
+      <section id="else" class="section">
+        <h2>if / else</h2>
+        <p>Add an <code>else</code> block to run code when the condition is <code>false</code>.
+          Exactly one of the two blocks runs.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">IfElse.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">int score = 45;
+
+if (score &gt;= 60) {
+    System.out.println("Pass");   // runs when the condition is true
+} else {
+    System.out.println("Fail");   // runs when the condition is false
+}</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: elseif -->
+      <section id="elseif" class="section">
+        <h2>else if</h2>
+        <p>Chain <code>else if</code> to test several conditions in order. Java checks each one
+          from top to bottom and stops at the first true condition.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Grade.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">int score = 82;
+
+if (score &gt;= 90) {
+    System.out.println("A");
+} else if (score &gt;= 80) {   // only checked if the first was false
+    System.out.println("B"); // 82 lands here
+} else if (score &gt;= 70) {
+    System.out.println("C");
+} else {
+    System.out.println("F"); // fallback when nothing matched
+}</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: logical -->
+      <section id="logical" class="section">
+        <h2>Logical Operators</h2>
+        <p>Combine several conditions with <code>&amp;&amp;</code> (AND), <code>||</code> (OR),
+          and <code>!</code> (NOT).</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Logical.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">int age = 20;
+boolean hasTicket = true;
+
+// AND: both conditions must be true
+if (age &gt;= 18 &amp;&amp; hasTicket) {
+    System.out.println("Welcome in");
+}
+
+// OR: at least one condition must be true
+if (age &lt; 12 || age &gt; 65) {
+    System.out.println("Discount available");
+}</code></pre>
+        </figure>
+        <p>In plain words, the three logical operators mean:</p>
+        <ul>
+          <li><code>&amp;&amp;</code> (AND) is <strong>true</strong> if <strong>both</strong> conditions are true.</li>
+          <li><code>||</code> (OR) is <strong>true</strong> if <strong>either</strong> of the conditions is true.</li>
+          <li><code>!</code> (NOT) is <strong>true</strong> if the condition is <strong>false</strong>.</li>
+        </ul>
+        <table class="data-table">
+          <thead><tr><th>A</th><th>B</th><th>A &amp;&amp; B</th><th>A || B</th><th>!A</th></tr></thead>
+          <tbody>
+            <tr><td>true</td><td>true</td><td>true</td><td>true</td><td>false</td></tr>
+            <tr><td>true</td><td>false</td><td>false</td><td>true</td><td>false</td></tr>
+            <tr><td>false</td><td>true</td><td>false</td><td>true</td><td>true</td></tr>
+            <tr><td>false</td><td>false</td><td>false</td><td>false</td><td>true</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Section: example -->
+      <section id="example" class="section">
+        <h2>Putting It Together</h2>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Ticket.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">public class Ticket {
+    public static void main(String[] args) {
+        int age = 15;
+        boolean member = true;
+
+        // Members of any age pay the discounted price; others pay full price.
+        if (member) {
+            System.out.println("Member price: $6");
+        } else if (age &lt; 12 || age &gt; 65) {
+            System.out.println("Reduced price: $8");
+        } else {
+            System.out.println("Full price: $12");
+        }
+    }
+}</code></pre>
+        </figure>
+        <div class="callout example">
+          <strong>Output:</strong> <code>Member price: $6</code> - because <code>member</code> is
+          true, the first branch is taken and the rest are skipped.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

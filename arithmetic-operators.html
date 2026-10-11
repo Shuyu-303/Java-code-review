@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!-- ==========================================================================
+     arithmetic-operators.html - Topic 6: Arithmetic Operators
+     Sections: basic, division, modulus, compound, incdec, casting
+     This page is also the reference template for all other topic pages.
+     ========================================================================== -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arithmetic Operators - Java Code Review</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="arithmetic-operators">
+  <header class="topbar">
+    <a class="back-btn" href="index.html">&lt;- Home</a>
+    <span class="topbar-title">Arithmetic Operators</span>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation"><span class="menu-bars" aria-hidden="true"></span></button>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="content">
+      <h1>Arithmetic Operators</h1>
+      <p class="lead">Operators are the symbols that combine values. Arithmetic operators
+        produce numbers - and their behavior depends heavily on the <em>types</em> involved.</p>
+
+      <!-- Section: basic -->
+      <section id="basic" class="section">
+        <h2>Basic Operators</h2>
+        <table class="data-table">
+          <thead><tr><th>Operator</th><th>Meaning</th><th>Example (a=10, b=3)</th></tr></thead>
+          <tbody>
+            <tr><td><code>+</code></td><td>addition</td><td><code>a + b</code> -> 13</td></tr>
+            <tr><td><code>-</code></td><td>subtraction</td><td><code>a - b</code> -> 7</td></tr>
+            <tr><td><code>*</code></td><td>multiplication</td><td><code>a * b</code> -> 30</td></tr>
+            <tr><td><code>/</code></td><td>division</td><td><code>a / b</code> -> 3 (see below)</td></tr>
+            <tr><td><code>%</code></td><td>modulus (remainder)</td><td><code>a % b</code> -> 1</td></tr>
+          </tbody>
+        </table>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Basics.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">int a = 10, b = 3;          // two int variables
+
+System.out.println(a + b);  // 13  addition
+System.out.println(a - b);  // 7   subtraction
+System.out.println(a * b);  // 30  multiplication
+System.out.println(a / b);  // 3   integer division (decimals discarded)
+System.out.println(a % b);  // 1   remainder of 10 / 3</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: division -->
+      <section id="division" class="section">
+        <h2>Integer vs Float Division</h2>
+        <p>The <code>/</code> symbol behaves differently depending on the operand types.
+          If <em>both</em> operands are integers, the result is an integer and any remainder is
+          thrown away.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Division.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">System.out.println(7 / 2);    // 3   int / int -> integer division
+System.out.println(7.0 / 2);  // 3.5 double / int -> real division
+System.out.println(7 / 2.0);  // 3.5 int / double -> real division
+
+int total = 7;
+double avg = total / 2.0;     // force a decimal result by using 2.0
+System.out.println(avg);      // 3.5</code></pre>
+        </figure>
+        <div class="callout warning">
+          <strong>Classic bug:</strong> <code>7 / 2</code> is <code>3</code>, not <code>3.5</code>.
+          To get a decimal result, make at least one operand a <code>double</code>.
+        </div>
+      </section>
+
+      <!-- Section: modulus -->
+      <section id="modulus" class="section">
+        <h2>Modulus %</h2>
+        <p>Modulus returns the <em>remainder</em> of a division. It is extremely useful for
+          checking whether a number is even or odd.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Modulus.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">System.out.println(10 % 3); // 1  (10 = 3*3 + 1)
+System.out.println(10 % 2); // 0  -> even number always gives remainder 0
+
+int n = 7;
+System.out.println(n % 2 == 0 ? "even" : "odd"); // "odd"</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: compound -->
+      <section id="compound" class="section">
+        <h2>Compound Assignment</h2>
+        <p>These operators update a variable in one short step. <code>x += 5</code> means
+          "add 5 to x and store the result back in x".</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Compound.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">int x = 10;
+
+x += 5;  // x = x + 5  -> 15
+x -= 3;  // x = x - 3  -> 12
+x *= 2;  // x = x * 2  -> 24
+x /= 4;  // x = x / 4  -> 6
+x %= 4;  // x = x % 4  -> 2
+
+System.out.println(x); // 2</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: incdec -->
+      <section id="incdec" class="section">
+        <h2>Increment and Decrement</h2>
+        <p><code>++</code> adds 1 and <code>--</code> subtracts 1. The position matters:
+          written <em>after</em> the variable (postfix) the old value is used first; written
+          <em>before</em> (prefix) the value changes first.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">IncDec.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">int i = 5;
+
+System.out.println(i++); // 5  (postfix: print, THEN increment to 6)
+System.out.println(i);   // 6
+System.out.println(++i); // 7  (prefix: increment to 7, THEN print)
+System.out.println(i--); // 7  (postfix: print, THEN decrement to 6)
+System.out.println(i);   // 6</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: casting -->
+      <section id="casting" class="section">
+        <h2>Casting</h2>
+        <p><strong>Casting</strong> converts a value from one type to another. Widening
+          (small -> large, like <code>int</code> -> <code>double</code>) happens automatically.
+          Narrowing (large -> small, like <code>double</code> -> <code>int</code>) needs an explicit
+          cast and <em>truncates</em> - it does not round.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Casting.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">double d = 7.9;
+int truncated = (int) d;    // (int) chops the decimals -> 7, NOT 8
+
+int whole = 5;
+double widened = whole;     // int -> double is automatic -> 5.0
+
+// Casting also controls integer division:
+int a = 7, b = 2;
+double result = (double) a / b; // 3.5  (a is promoted before dividing)
+System.out.println(result);      // 3.5</code></pre>
+        </figure>
+        <div class="callout tip">
+          <strong>Remember:</strong> casting a decimal to an <code>int</code> always moves toward
+          zero (7.9 -> 7, -7.9 -> -7). Use <code>Math.round()</code> if you want rounding instead.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

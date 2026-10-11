@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<!-- ==========================================================================
+     styling.html - Topic 8: Styling
+     Sections: names, comments, whitespace, example
+     ========================================================================== -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Styling - Java Code Review</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="styling">
+  <header class="topbar">
+    <a class="back-btn" href="index.html">&lt;- Home</a>
+    <span class="topbar-title">Styling</span>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation"><span class="menu-bars" aria-hidden="true"></span></button>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="content">
+      <h1>Styling</h1>
+      <p class="lead">Good style does not change what a program does - it changes how easy the
+        program is to read, review, and fix. Three habits matter most: naming, comments, and
+        white space.</p>
+
+      <!-- Section: names -->
+      <section id="names" class="section">
+        <h2>Meaningful Variable Names</h2>
+        <p>A good name says <em>what the value means</em>, not just its type. Prefer descriptive
+          words over single letters (except for short loop counters).</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Names.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">// BAD: what is n? what is x?
+int n = 3;
+double x = 19.99;
+
+// GOOD: the names explain themselves
+int itemCount = 3;
+double unitPrice = 19.99;
+double totalPrice = itemCount * unitPrice;</code></pre>
+        </figure>
+        <div class="callout tip">
+          <strong>Rule:</strong> if you need a comment to explain what a variable holds, the name
+          is probably not good enough.
+        </div>
+      </section>
+
+      <!-- Section: comments -->
+      <section id="comments" class="section">
+        <h2>Comments</h2>
+        <p>Comments explain <em>why</em>, not <em>what</em>. The code already says what it does.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Comments.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">// A single-line comment runs to the end of the line.
+
+/*
+ * A block comment can span several lines.
+ * Use it for longer explanations.
+ */
+
+/**
+ * A Javadoc comment documents a class or method.
+ * @return the discounted price
+ */
+double applyDiscount(double price) {
+    return price * 0.9; // apply a 10% discount
+}</code></pre>
+        </figure>
+        <div class="callout warning">
+          <strong>Avoid:</strong> comments that just restate the code, like
+          <code>i++; // increment i</code>. They add noise and go stale.
+        </div>
+      </section>
+
+      <!-- Section: whitespace -->
+      <section id="whitespace" class="section">
+        <h2>White Space</h2>
+        <p>Blank lines and indentation group related ideas and make the structure visible.
+          Java ignores extra spaces, so use them freely for clarity.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Spacing.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">// Indent each block level by 4 spaces.
+// Put operators and braces in consistent places.
+// Leave a blank line between logical sections.
+
+int subtotal = 100;
+int tax = 8;
+
+int grandTotal = subtotal + tax; // a blank line above groups this "result" idea
+System.out.println(grandTotal);</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: example -->
+      <section id="example" class="section">
+        <h2>Before and After</h2>
+        <p>The same logic, written two ways:</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Before.java (messy)</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">public class Calc{public static void main(String[]a){
+int x=5;int y=3;System.out.println(x*y);}}</code></pre>
+        </figure>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">After.java (clean)</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">public class Calc {
+    public static void main(String[] args) {
+        // Multiply two numbers and print the result.
+        int length = 5;
+        int width = 3;
+        System.out.println(length * width); // 15
+    }
+}</code></pre>
+        </figure>
+        <div class="callout example">
+          <strong>Review tip:</strong> code is read far more often than it is written - write for
+          the next reader (often future you).
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

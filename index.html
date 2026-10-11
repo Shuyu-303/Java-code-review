@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<!-- ==========================================================================
+     index.html - HOME PAGE
+     The hub. Links to ALL 18 topic pages, grouped by category.
+     Cards are the navigation on the home page (no sidebar needed here).
+     ========================================================================== -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Java Code Review - Learn Java Step by Step</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- HERO: title + call to action -->
+  <header class="hero">
+    <h1>Java Code Review</h1>
+    <p class="lead">A hands-on Java curriculum - from your very first line of code to
+      loops, methods, and strings. Every example is commented so you can read the code like a review.</p>
+    <a class="cta" href="what-is-java.html">Start with "What is Java?" -&gt;</a>
+  </header>
+
+  <!-- MAIN CONTENT: category headings + topic cards -->
+  <main class="home-wrap">
+
+    <!-- Category: Getting Started -->
+    <h2 class="cat-title">Getting Started</h2>
+    <div class="card-grid">
+      <a class="card" href="what-is-java.html">
+        <span class="badge">01</span>
+        <h3>What is Java?</h3>
+        <p>Why Java, how it runs on the JVM, and your first program.</p>
+      </a>
+      <a class="card" href="installation.html">
+        <span class="badge">02</span>
+        <h3>Installation</h3>
+        <p>Download the JDK, set your PATH, and verify everything works.</p>
+      </a>
+    </div>
+
+    <!-- Category: Core Basics -->
+    <h2 class="cat-title">Core Basics</h2>
+    <div class="card-grid">
+      <a class="card" href="data-types.html">
+        <span class="badge">03</span>
+        <h3>Data Types</h3>
+        <p>The 8 primitive types, from byte to char and ASCII.</p>
+      </a>
+      <a class="card" href="variables.html">
+        <span class="badge">04</span>
+        <h3>Variables</h3>
+        <p>Declaring, initializing, and naming variables the right way.</p>
+      </a>
+      <a class="card" href="keyboard-input.html">
+        <span class="badge">05</span>
+        <h3>Keyboard Input</h3>
+        <p>Read user input in 3 steps with the Scanner class.</p>
+      </a>
+      <a class="card" href="statements-expressions.html">
+        <span class="badge">06</span>
+        <h3>Statements &amp; Expressions</h3>
+        <p>Semicolons, numerical expressions, and logical expressions.</p>
+      </a>
+    </div>
+
+    <!-- Category: Operators -->
+    <h2 class="cat-title">Operators</h2>
+    <div class="card-grid">
+      <a class="card" href="arithmetic-operators.html">
+        <span class="badge">07</span>
+        <h3>Arithmetic Operators</h3>
+        <p>+ - * /, modulus, compound assignment, ++/--, and casting.</p>
+      </a>
+    </div>
+
+    <!-- Category: Selection (branching) -->
+    <h2 class="cat-title">Selection</h2>
+    <div class="card-grid">
+      <a class="card" href="if-else.html">
+        <span class="badge">08</span>
+        <h3>Selection: if / else</h3>
+        <p>Relational and logical operators, if, else, and else if.</p>
+      </a>
+      <a class="card" href="nested-if-else.html">
+        <span class="badge">09</span>
+        <h3>Nested if / else</h3>
+        <p>Branching inside branching - and checking input with hasNext.</p>
+      </a>
+      <a class="card" href="switch.html">
+        <span class="badge">10</span>
+        <h3>Switch</h3>
+        <p>Replace long if-else chains with clean, arrow-style cases.</p>
+      </a>
+    </div>
+
+    <!-- Category: Loops -->
+    <h2 class="cat-title">Loops</h2>
+    <div class="card-grid">
+      <a class="card" href="while-loop.html">
+        <span class="badge">11</span>
+        <h3>While Loop</h3>
+        <p>Repeat while a condition holds - plus break. Flowchart included.</p>
+      </a>
+      <a class="card" href="do-while-loop.html">
+        <span class="badge">12</span>
+        <h3>Do/While Loop</h3>
+        <p>Guaranteed to run at least once before checking the condition.</p>
+      </a>
+      <a class="card" href="for-loops.html">
+        <span class="badge">13</span>
+        <h3>For Loops</h3>
+        <p>Start, stop, keep going - and nested loops for grids.</p>
+      </a>
+    </div>
+
+    <!-- Category: Errors & Exceptions -->
+    <h2 class="cat-title">Errors &amp; Exceptions</h2>
+    <div class="card-grid">
+      <a class="card" href="errors.html">
+        <span class="badge">14</span>
+        <h3>Errors</h3>
+        <p>Syntax, runtime, and logic errors - and how to debug them.</p>
+      </a>
+      <a class="card" href="exceptions.html">
+        <span class="badge">15</span>
+        <h3>Exceptions</h3>
+        <p>Handle problems gracefully with try, catch, and finally.</p>
+      </a>
+    </div>
+
+    <!-- Category: Code Quality -->
+    <h2 class="cat-title">Code Quality</h2>
+    <div class="card-grid">
+      <a class="card" href="styling.html">
+        <span class="badge">16</span>
+        <h3>Styling</h3>
+        <p>Meaningful names, useful comments, and clean white space.</p>
+      </a>
+    </div>
+
+    <!-- Category: Reusability & Data -->
+    <h2 class="cat-title">Reusability &amp; Data</h2>
+    <div class="card-grid">
+      <a class="card" href="methods.html">
+        <span class="badge">17</span>
+        <h3>Methods</h3>
+        <p>Break work into reusable, testable, well-named methods.</p>
+      </a>
+      <a class="card" href="strings.html">
+        <span class="badge">18</span>
+        <h3>Strings</h3>
+        <p>Text data and the most useful String methods.</p>
+      </a>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    Java Code Review - A beginner-to-intermediate Java learning resource.
+  </footer>
+
+</body>
+</html>

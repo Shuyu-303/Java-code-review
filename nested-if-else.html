@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!-- ==========================================================================
+     nested-if-else.html - Topic 11: Nested if / else
+     Sections: what, syntax, hasnext, hasnextint
+     ========================================================================== -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nested if / else - Java Code Review</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="nested-if-else">
+  <header class="topbar">
+    <a class="back-btn" href="index.html">&lt;- Home</a>
+    <span class="topbar-title">Nested if / else</span>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation"><span class="menu-bars" aria-hidden="true"></span></button>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="content">
+      <h1>Nested if / else</h1>
+      <p class="lead">Sometimes one decision depends on the outcome of another. Placing an
+        <code>if</code> inside another <code>if</code> is called <strong>nesting</strong>.</p>
+
+      <!-- Section: what -->
+      <section id="what" class="section">
+        <h2>What Is Nesting?</h2>
+        <p>A nested <code>if</code> lives inside the block of an outer <code>if</code>. The inner
+          condition is evaluated <em>only if</em> the outer condition was true.</p>
+        <div class="callout info">
+          <strong>Read it like a sentence:</strong> "If it is the weekend, <em>then</em> if the
+          weather is nice, go outside."
+        </div>
+      </section>
+
+      <!-- Section: syntax -->
+      <section id="syntax" class="section">
+        <h2>Syntax and Example</h2>
+        <p>Indentation is essential - it shows which <code>else</code> belongs to which
+          <code>if</code>.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Nested.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">int age = 25;
+boolean hasLicense = true;
+
+if (age &gt;= 18) {                 // OUTER condition
+    if (hasLicense) {            // INNER condition: only checked if age &gt;= 18
+        System.out.println("You may drive");
+    } else {
+        System.out.println("Get a license first");
+    }
+} else {
+    System.out.println("Too young to drive");
+}
+// Output: You may drive</code></pre>
+        </figure>
+        <div class="callout warning">
+          <strong>Beware the dangling else:</strong> an <code>else</code> binds to the nearest
+          unmatched <code>if</code>. Always use braces <code>{ }</code> to avoid confusion.
+        </div>
+      </section>
+
+      <!-- Section: hasnext -->
+      <section id="hasnext" class="section">
+        <h2>Checking Input with hasNext</h2>
+        <p>A very common use of a nested <code>if</code> is checking <em>whether</em> the user
+          typed the kind of value you expect before reading it. Scanner provides
+          <code>hasNextX()</code> methods that return a boolean.</p>
+        <table class="data-table">
+          <thead><tr><th>Method</th><th>Returns true when the next token is...</th></tr></thead>
+          <tbody>
+            <tr><td><code>hasNext()</code></td><td>any token at all</td></tr>
+            <tr><td><code>hasNextInt()</code></td><td>a valid integer</td></tr>
+            <tr><td><code>hasNextDouble()</code></td><td>a valid decimal number</td></tr>
+            <tr><td><code>hasNextLine()</code></td><td>another line is available</td></tr>
+          </tbody>
+        </table>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">CheckInput.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">import java.util.Scanner;
+
+public class CheckInput {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        if (input.hasNextInt()) {          // guard: is the next token an integer?
+            int n = input.nextInt();       // safe to read the number now
+            System.out.println("You entered " + n);
+        } else {
+            System.out.println("That was not an integer"); // handle bad input
+        }
+    }
+}</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: hasnextint -->
+      <section id="hasnextint" class="section">
+        <h2>Using hasNextInt</h2>
+        <p><code>hasNextInt()</code> is especially handy as a loop condition: keep reading numbers
+          until the user types something that is <em>not</em> an integer.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">SumNumbers.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">import java.util.Scanner;
+
+public class SumNumbers {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int sum = 0;
+
+        // Loop while the next token is a valid integer.
+        while (input.hasNextInt()) {
+            sum += input.nextInt();
+        }
+
+        System.out.println("Sum = " + sum); // typing a non-number ends the loop
+    }
+}</code></pre>
+        </figure>
+        <div class="callout tip">
+          <strong>Why it is safe:</strong> because <code>hasNextInt()</code> is true, we know
+          <code>nextInt()</code> will succeed - no <code>InputMismatchException</code>.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

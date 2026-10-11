@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!-- ==========================================================================
+     do-while-loop.html - Topic 13: Do/While Loop
+     Sections: overview, syntax, example, compare, when
+     ========================================================================== -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Do/While Loop - Java Code Review</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="do-while-loop">
+  <header class="topbar">
+    <a class="back-btn" href="index.html">&lt;- Home</a>
+    <span class="topbar-title">Do/While Loop</span>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation"><span class="menu-bars" aria-hidden="true"></span></button>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="content">
+      <h1>Do/While Loop</h1>
+      <p class="lead">A <code>do/while</code> loop is like a <code>while</code> loop with one key
+        difference: it runs the body <strong>at least once</strong>, because the condition is
+        checked <em>after</em> the body.</p>
+
+      <!-- Section: overview -->
+      <section id="overview" class="section">
+        <h2>Overview</h2>
+        <p>With a plain <code>while</code>, the condition is tested first, so the body might never
+          run. With <code>do/while</code>, the body always executes once before any testing
+          happens.</p>
+        <div class="callout info">
+          <strong>Mental model:</strong> "Do this task once. Then, if the condition is still true,
+          do it again."
+        </div>
+      </section>
+
+      <!-- Section: syntax -->
+      <section id="syntax" class="section">
+        <h2>Syntax</h2>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Syntax</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">do {
+    // loop body - runs FIRST, before any condition check
+} while (condition);   // note the semicolon after the condition</code></pre>
+        </figure>
+        <div class="callout warning">
+          <strong>Don't forget:</strong> a <code>do/while</code> statement ends with a semicolon
+          after the closing parenthesis - unlike a plain <code>while</code>.
+        </div>
+      </section>
+
+      <!-- Section: example -->
+      <section id="example" class="section">
+        <h2>Example</h2>
+        <p>Keep asking for input until the user provides a positive number. The prompt must appear
+          at least once - which is exactly what <code>do/while</code> guarantees.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">PositiveInput.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">import java.util.Scanner;
+
+public class PositiveInput {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int number;
+
+        do {
+            System.out.print("Enter a positive number: "); // always shown once
+            number = input.nextInt();
+        } while (number &lt;= 0);   // repeat while the value is not positive
+
+        System.out.println("Thanks! You entered " + number);
+    }
+}</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: compare -->
+      <section id="compare" class="section">
+        <h2>do/while vs while</h2>
+        <table class="data-table">
+          <thead><tr><th></th><th><code>while</code></th><th><code>do/while</code></th></tr></thead>
+          <tbody>
+            <tr><td>Condition checked</td><td>Before the body</td><td>After the body</td></tr>
+            <tr><td>Body runs at least once?</td><td>No - may run zero times</td><td>Yes - always at least once</td></tr>
+            <tr><td>Ends with a semicolon?</td><td>No</td><td>Yes</td></tr>
+            <tr><td>Best for</td><td>Unknown number of passes</td><td>Must-run-once tasks</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Section: when -->
+      <section id="when" class="section">
+        <h2>When to Use</h2>
+        <p>Choose <code>do/while</code> when the task <strong>must happen at least once</strong>:</p>
+        <ul>
+          <li>Displaying a menu, then repeating until the user chooses "quit".</li>
+          <li>Asking for input again when it is invalid.</li>
+          <li>Rolling dice, then re-rolling until a target value appears.</li>
+        </ul>
+        <div class="callout tip">
+          <strong>Rule of thumb:</strong> if you would write the same code once <em>and</em> inside
+          a loop, use <code>do/while</code>.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!-- ==========================================================================
+     variables.html - Topic 4: Variables
+     Sections: declaring, initializing, naming, examples
+     ========================================================================== -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Variables - Java Code Review</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="variables">
+  <header class="topbar">
+    <a class="back-btn" href="index.html">&lt;- Home</a>
+    <span class="topbar-title">Variables</span>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation"><span class="menu-bars" aria-hidden="true"></span></button>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="content">
+      <h1>Variables</h1>
+      <p class="lead">A variable is a named box in memory that holds a value. Java requires you
+        to state the box's <em>type</em> before you use it.</p>
+
+      <!-- Section: declaring -->
+      <section id="declaring" class="section">
+        <h2>Declaring Variables</h2>
+        <p><strong>Declaring</strong> tells Java to create a variable and what type it is.
+          The pattern is <code>type name;</code>.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Declare.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">int age;         // declare an int named "age"
+double price;    // declare a double named "price"
+String name;     // declare a String named "name"
+boolean ready;   // declare a boolean named "ready"</code></pre>
+        </figure>
+        <p>At this point the variables exist but hold no assigned value yet (you may not read them).</p>
+      </section>
+
+      <!-- Section: initializing -->
+      <section id="initializing" class="section">
+        <h2>Initializing Variables</h2>
+        <p><strong>Initializing</strong> means giving a variable its first value with <code>=</code>.
+          You can declare and initialize in one line.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Initialize.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">int age = 21;             // declare AND initialize together
+double price = 9.99;      // decimals use double by default
+String name = "Ada";      // text goes in double quotes
+boolean ready = true;     // true or false
+
+age = 22;                 // reassign later: the type is not repeated
+
+int a = 1, b = 2, c = 3;  // several variables of the same type in one line</code></pre>
+        </figure>
+        <div class="callout tip">
+          <strong>Tip:</strong> declare a variable as close as possible to where you first use it,
+          and give it an initial value immediately when you can.
+        </div>
+      </section>
+
+      <!-- Section: naming -->
+      <section id="naming" class="section">
+        <h2>Naming Conventions</h2>
+        <p>Java has rules (must follow) and conventions (should follow).</p>
+        <table class="data-table">
+          <thead><tr><th>Rule / Convention</th><th>Good</th><th>Bad</th></tr></thead>
+          <tbody>
+            <tr><td>Start with a letter, <code>$</code>, or <code>_</code> - never a digit</td><td><code>score1</code></td><td><code>1score</code></td></tr>
+            <tr><td>No spaces or special symbols</td><td><code>totalPrice</code></td><td><code>total price</code></td></tr>
+            <tr><td>Use camelCase for variables</td><td><code>firstName</code></td><td><code>FirstName</code></td></tr>
+            <tr><td>Avoid <code>_</code> in the middle of names</td><td><code>maxValue</code></td><td><code>max_value</code></td></tr>
+            <tr><td>Names are case-sensitive</td><td><code>age</code> != <code>Age</code></td><td>-</td></tr>
+            <tr><td>Cannot be a reserved keyword</td><td><code>value</code></td><td><code>class</code></td></tr>
+          </tbody>
+        </table>
+        <div class="callout warning">
+          <strong>Keyword clash:</strong> words like <code>class</code>, <code>int</code>, and
+          <code>for</code> are reserved and cannot be used as variable names.
+        </div>
+      </section>
+
+      <!-- Section: examples -->
+      <section id="examples" class="section">
+        <h2>Examples</h2>
+        <p>A complete little program that declares, initializes, and uses variables:</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Profile.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">public class Profile {
+    public static void main(String[] args) {
+        String name = "Ada Lovelace"; // text variable
+        int age = 36;                 // whole-number variable
+        double height = 1.68;         // decimal variable
+
+        // Use the variables in an output statement
+        System.out.println(name + " is " + age + " and " + height + "m tall.");
+    }
+}</code></pre>
+        </figure>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Console</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code>Ada Lovelace is 36 and 1.68m tall.</code></pre>
+        </figure>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

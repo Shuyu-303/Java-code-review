@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!-- ==========================================================================
+     while-loop.html - Topic 12: While Loop
+     Sections: overview, flowchart, syntax, when, break
+     ========================================================================== -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>While Loop - Java Code Review</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="while-loop">
+  <header class="topbar">
+    <a class="back-btn" href="index.html">&lt;- Home</a>
+    <span class="topbar-title">While Loop</span>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation"><span class="menu-bars" aria-hidden="true"></span></button>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="content">
+      <h1>While Loop</h1>
+      <p class="lead">A loop repeats a block of code. A <code>while</code> loop repeats it
+        <em>as long as</em> a condition stays true.</p>
+
+      <!-- Section: overview -->
+      <section id="overview" class="section">
+        <h2>What Is a Loop?</h2>
+        <p>Without loops, repeating anything means copying and pasting code. A loop lets you
+          write the repetition once. A <code>while</code> loop checks its condition <em>before</em>
+          every pass through the body.</p>
+        <div class="callout info">
+          <strong>Three parts of every loop:</strong> (1) a starting value, (2) a condition to test,
+          and (3) something inside the body that eventually changes the condition.
+        </div>
+      </section>
+
+      <!-- Section: flowchart -->
+      <section id="flowchart" class="section">
+        <h2>Flowchart of a Loop</h2>
+        <p>The condition is checked first. If it is true, the body runs and control returns to the
+          condition. If it is false, the loop ends.</p>
+        <figure class="flowchart">
+          <svg viewBox="0 0 340 300" width="340" height="300" role="img" aria-label="while loop flowchart">
+            <defs>
+              <marker id="arr-w" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L8,3 L0,6 Z" fill="#475569"></path>
+              </marker>
+            </defs>
+            <g font-family="Segoe UI, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">
+              <ellipse cx="170" cy="22" rx="52" ry="16" fill="#dcfce7" stroke="#16a34a"></ellipse>
+              <text x="170" y="26">Start</text>
+              <line x1="170" y1="38" x2="170" y2="53" stroke="#475569" marker-end="url(#arr-w)"></line>
+              <polygon points="170,55 280,90 170,125 60,90" fill="#fef3c7" stroke="#d97706"></polygon>
+              <text x="170" y="94">condition?</text>
+              <text x="184" y="145" font-size="11" fill="#16a34a">true</text>
+              <line x1="170" y1="125" x2="170" y2="148" stroke="#475569" marker-end="url(#arr-w)"></line>
+              <rect x="100" y="150" width="140" height="44" rx="8" fill="#dbeafe" stroke="#2563eb"></rect>
+              <text x="170" y="176">loop body</text>
+              <path d="M100,172 H40 V90 H58" fill="none" stroke="#475569" marker-end="url(#arr-w)"></path>
+              <text x="72" y="150" font-size="11" fill="#475569">repeat</text>
+              <text x="296" y="84" font-size="11" fill="#dc2626">false</text>
+              <line x1="280" y1="90" x2="315" y2="90" stroke="#475569"></line>
+              <line x1="315" y1="90" x2="315" y2="272" stroke="#475569"></line>
+              <line x1="315" y1="272" x2="224" y2="272" stroke="#475569" marker-end="url(#arr-w)"></line>
+              <ellipse cx="170" cy="272" rx="52" ry="16" fill="#fee2e2" stroke="#dc2626"></ellipse>
+              <text x="170" y="276">End</text>
+            </g>
+          </svg>
+          <figcaption>Figure: the body repeats until the condition becomes false.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Section: syntax -->
+      <section id="syntax" class="section">
+        <h2>Syntax and Example</h2>
+        <p>Syntax: <code>while (condition) { ... }</code>. Make sure something inside the body
+          moves the condition toward false.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Countdown.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">int count = 1;
+
+while (count &lt;= 5) {          // check the condition BEFORE each pass
+    System.out.println(count); // loop body
+    count++;                   // CRUCIAL: move toward ending the loop
+}
+// Output: 1 2 3 4 5 (then count is 6, so the condition is false and we stop)</code></pre>
+        </figure>
+        <div class="callout warning">
+          <strong>Infinite loop:</strong> if the condition never becomes false - for example, if you
+          forget <code>count++</code> - the loop runs forever.
+        </div>
+      </section>
+
+      <!-- Section: when -->
+      <section id="when" class="section">
+        <h2>When to Use a while Loop</h2>
+        <p>Use a <code>while</code> loop when <strong>either</strong> of these is true:</p>
+        <ul>
+          <li>You want to stop looping <em>when</em> (or <em>until</em>) a certain condition is met.</li>
+          <li>You do <strong>not know ahead of time</strong> how many iterations will run.</li>
+        </ul>
+        <p>For example, keep asking for a password until the user types the correct one - you have
+          no idea how many tries that will take.</p>
+      </section>
+
+      <!-- Section: break -->
+      <section id="break" class="section">
+        <h2>Using break</h2>
+        <p><code>break</code> exits the loop immediately, skipping the rest of the body and the
+          condition check. It is useful when the loop's exit depends on something you discover
+          <em>inside</em> the body.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Break.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">int n = 0;
+
+while (true) {          // deliberately an "infinite" loop
+    n++;
+    System.out.println(n);
+    if (n == 3) {
+        break;         // exit the loop right here
+    }
+}
+// Output: 1 2 3  (then the loop stops because of break)</code></pre>
+        </figure>
+        <div class="callout tip">
+          <strong>Tip:</strong> use <code>break</code> sparingly. A well-written loop condition is
+          usually clearer than an unexpected early exit.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

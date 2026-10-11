@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!-- ==========================================================================
+     statements-expressions.html - Topic 9: Statements & Expressions
+     Sections: statements, expressions, numerical, logical, precedence
+     ========================================================================== -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statements &amp; Expressions - Java Code Review</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="statements-expressions">
+  <header class="topbar">
+    <a class="back-btn" href="index.html">&lt;- Home</a>
+    <span class="topbar-title">Statements &amp; Expressions</span>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation"><span class="menu-bars" aria-hidden="true"></span></button>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="content">
+      <h1>Statements &amp; Expressions</h1>
+      <p class="lead">A <strong>statement</strong> is an instruction the program performs.
+        An <strong>expression</strong> is a piece of code that produces a value.
+        Statements are built out of expressions.</p>
+
+      <!-- Section: statements -->
+      <section id="statements" class="section">
+        <h2>Statements</h2>
+        <p>A statement is a complete action, and in Java it ends with a semicolon
+          <code>;</code>. Think of the semicolon as the period at the end of a sentence.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Statements.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">int x = 5;              // declaration statement
+x = x + 1;              // assignment statement
+System.out.println(x);  // method-call statement
+// Each of the three lines above ends with ; - so each is one statement.</code></pre>
+        </figure>
+        <div class="callout warning">
+          <strong>Do not forget the semicolon:</strong> a missing <code>;</code> is the most
+          common beginner syntax error.
+        </div>
+      </section>
+
+      <!-- Section: expressions -->
+      <section id="expressions" class="section">
+        <h2>Expressions</h2>
+        <p>An expression <em>evaluates to a value</em>. It can be as simple as a literal or a
+          variable, or as complex as a formula.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Expressions.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">int sum = 3 + 4;          // "3 + 4" is an expression -> evaluates to 7
+boolean ok = sum &gt; 5;     // "sum &gt; 5" is an expression -> evaluates to true
+
+// The right-hand side of "=" is always an expression.
+// The whole line (variable = expression ;) is a statement.</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: numerical -->
+      <section id="numerical" class="section">
+        <h2>Numerical Expressions</h2>
+        <p>Numerical expressions combine numbers, variables, and arithmetic operators. The
+          order of operations matters - multiplication and division happen before addition and
+          subtraction, and parentheses win over everything.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Numerical.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">int result = 2 + 3 * 4;       // 14  (* happens before +)
+int grouped = (2 + 3) * 4;    // 20  (parentheses first)
+double avg = (1 + 2 + 3) / 3.0; // 2.0 (the sum is 6, divided by 3.0)</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: logical -->
+      <section id="logical" class="section">
+        <h2>Logical Expressions</h2>
+        <p>Logical expressions produce a <code>boolean</code> using the logical operators
+          <code>&amp;&amp;</code> (AND), <code>||</code> (OR), and <code>!</code> (NOT).</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Logical.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">boolean a = true, b = false;
+
+System.out.println(a &amp;&amp; b); // false  AND: both sides must be true
+System.out.println(a || b); // true   OR: at least one side is true
+System.out.println(!a);     // false  NOT: flips the value</code></pre>
+        </figure>
+        <p>In plain words, the three logical operators mean:</p>
+        <ul>
+          <li><code>&amp;&amp;</code> (AND) is <strong>true</strong> if <strong>both</strong> conditions are true.</li>
+          <li><code>||</code> (OR) is <strong>true</strong> if <strong>either</strong> of the conditions is true.</li>
+          <li><code>!</code> (NOT) is <strong>true</strong> if the condition is <strong>false</strong>.</li>
+        </ul>
+        <div class="callout note">
+          <strong>Short-circuit:</strong> <code>&amp;&amp;</code> stops as soon as the left side is
+          false, and <code>||</code> stops as soon as the left side is true.
+        </div>
+      </section>
+
+      <!-- Section: precedence -->
+      <section id="precedence" class="section">
+        <h2>Operator Precedence</h2>
+        <p>When several operators appear together, this order decides what happens first
+          (highest first):</p>
+        <table class="data-table">
+          <thead><tr><th>Priority</th><th>Operators</th></tr></thead>
+          <tbody>
+            <tr><td>1 (highest)</td><td><code>( )</code> parentheses</td></tr>
+            <tr><td>2</td><td><code>!</code> <code>++</code> <code>--</code> unary</td></tr>
+            <tr><td>3</td><td><code>*</code> <code>/</code> <code>%</code></td></tr>
+            <tr><td>4</td><td><code>+</code> <code>-</code></td></tr>
+            <tr><td>5</td><td><code>&lt;</code> <code>&lt;=</code> <code>&gt;</code> <code>&gt;=</code></td></tr>
+            <tr><td>6</td><td><code>==</code> <code>!=</code></td></tr>
+            <tr><td>7</td><td><code>&amp;&amp;</code></td></tr>
+            <tr><td>8</td><td><code>||</code></td></tr>
+          </tbody>
+        </table>
+        <div class="callout tip">
+          <strong>Best practice:</strong> when in doubt, add parentheses. They cost nothing and
+          make your intent clear to the reader.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

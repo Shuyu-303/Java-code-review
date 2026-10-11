@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!-- ==========================================================================
+     data-types.html - Topic 3: Data Types
+     Sections: overview, integers, floating, boolean, char, summary
+     ========================================================================== -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Types - Java Code Review</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="data-types">
+  <header class="topbar">
+    <a class="back-btn" href="index.html">&lt;- Home</a>
+    <span class="topbar-title">Data Types</span>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation"><span class="menu-bars" aria-hidden="true"></span></button>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="content">
+      <h1>Data Types</h1>
+      <p class="lead">Every value in Java has a type. There are eight <strong>primitive</strong>
+        types - each fixes how much memory a value uses and what it can store.</p>
+
+      <!-- Section: overview -->
+      <section id="overview" class="section">
+        <h2>Primitive Types Overview</h2>
+        <p>Java has exactly eight primitive data types. Four hold whole numbers, two hold decimals,
+          one holds a true/false value, and one holds a single character.</p>
+        <table class="data-table">
+          <thead>
+            <tr><th>Type</th><th>Size</th><th>Stores</th><th>Example</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>byte</code></td><td>1 byte</td><td>whole numbers -128 to 127</td><td><code>byte b = 100;</code></td></tr>
+            <tr><td><code>short</code></td><td>2 bytes</td><td>whole numbers -32,768 to 32,767</td><td><code>short s = 20000;</code></td></tr>
+            <tr><td><code>int</code></td><td>4 bytes</td><td>whole numbers -2.1 billion to 2.1 billion</td><td><code>int n = 42;</code></td></tr>
+            <tr><td><code>long</code></td><td>8 bytes</td><td>very large whole numbers</td><td><code>long L = 9_000_000_000L;</code></td></tr>
+            <tr><td><code>float</code></td><td>4 bytes</td><td>decimals (~7 digits)</td><td><code>float f = 3.14f;</code></td></tr>
+            <tr><td><code>double</code></td><td>8 bytes</td><td>decimals (~15 digits)</td><td><code>double d = 3.14159;</code></td></tr>
+            <tr><td><code>boolean</code></td><td>1 bit*</td><td><code>true</code> or <code>false</code></td><td><code>boolean ok = true;</code></td></tr>
+            <tr><td><code>char</code></td><td>2 bytes</td><td>one character</td><td><code>char c = 'A';</code></td></tr>
+          </tbody>
+        </table>
+        <div class="callout note">
+          <strong>Note:</strong> <code>String</code> is <em>not</em> a primitive - it is a reference
+          type (a class). It is covered in the <a href="strings.html">Strings</a> topic.
+        </div>
+      </section>
+
+      <!-- Section: integers -->
+      <section id="integers" class="section">
+        <h2>Integer Types</h2>
+        <p>The four integer types differ only in the range of values they can hold. Prefer
+          <code>int</code> unless you need a bigger range (<code>long</code>) or a smaller footprint.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Integers.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">byte  small  = 100;          // fits easily in one byte
+short medium = 20000;        // up to about 32 thousand
+int   count  = 1000000;      // the default choice for whole numbers
+long  big    = 9_000_000_000L; // note the L suffix for long literals
+
+System.out.println(big);     // 9000000000</code></pre>
+        </figure>
+        <div class="callout warning">
+          <strong>Overflow:</strong> if a value is too big for its type, it "wraps around".
+          Here <code>int</code> overflows because the result exceeds ~2.1 billion:
+          <code>int x = 2_000_000_000 + 2_000_000_000; // negative!</code>
+        </div>
+      </section>
+
+      <!-- Section: floating -->
+      <section id="floating" class="section">
+        <h2>Floating-Point Types</h2>
+        <p><code>float</code> and <code>double</code> store decimal numbers. <code>double</code>
+          is the default and is more precise, so use it unless memory is tight.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Decimals.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">float  price  = 19.99f;   // 'f' suffix is required for float literals
+double pi     = 3.14159265358979; // double is the default for decimals
+
+System.out.println(price);       // 19.99
+System.out.println(pi * 2);      // 6.28318530717958</code></pre>
+        </figure>
+        <div class="callout warning">
+          <strong>Precision:</strong> floating-point math is approximate.
+          <code>0.1 + 0.2</code> prints <code>0.30000000000000004</code>, not <code>0.3</code>.
+        </div>
+      </section>
+
+      <!-- Section: boolean -->
+      <section id="boolean" class="section">
+        <h2>boolean</h2>
+        <p>A <code>boolean</code> holds only two values: <code>true</code> or <code>false</code>.
+          It usually stores the result of a comparison.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Booleans.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">boolean isLoggedIn = true;      // stored directly
+boolean isAdult    = 20 &gt;= 18;  // stores the result of a comparison (true)
+
+System.out.println(isAdult);    // true</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: char -->
+      <section id="char" class="section">
+        <h2>char and ASCII</h2>
+        <p>A <code>char</code> stores a <em>single</em> character wrapped in single quotes.
+          Internally each character is a number (its Unicode/ASCII code), so a char can be
+          used in arithmetic.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Chars.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">char letter = 'A';              // a single character, single quotes
+char digit  = '7';              // digits are characters too
+
+int code = letter;              // 'A' has the numeric code 65
+char next = (char) (letter + 1); // 65 + 1 = 66 -> 'B'
+
+System.out.println(code);       // 65
+System.out.println(next);       // B</code></pre>
+        </figure>
+        <p>A few useful ASCII codes:</p>
+        <table class="data-table">
+          <thead><tr><th>Character</th><th>ASCII code</th></tr></thead>
+          <tbody>
+            <tr><td><code>'A' ... 'Z'</code></td><td>65 ... 90</td></tr>
+            <tr><td><code>'a' ... 'z'</code></td><td>97 ... 122</td></tr>
+            <tr><td><code>'0' ... '9'</code></td><td>48 ... 57</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Section: summary -->
+      <section id="summary" class="section">
+        <h2>Type Summary Table</h2>
+        <table class="data-table">
+          <thead>
+            <tr><th>Category</th><th>Types</th><th>Default value</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Whole numbers</td><td>byte, short, int, long</td><td><code>0</code> (each type)</td></tr>
+            <tr><td>Decimals</td><td>float, double</td><td><code>0.0</code></td></tr>
+            <tr><td>Truth value</td><td>boolean</td><td><code>false</code></td></tr>
+            <tr><td>Character</td><td>char</td><td><code>'\u0000'</code></td></tr>
+          </tbody>
+        </table>
+        <div class="callout tip">
+          <strong>Tip:</strong> choose the smallest type that safely holds your data, and use
+          <code>int</code> or <code>double</code> as sensible defaults.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

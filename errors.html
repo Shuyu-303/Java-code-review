@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!-- ==========================================================================
+     errors.html - Topic 7: Errors
+     Sections: overview, syntax, runtime, logic, debugging
+     ========================================================================== -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Errors - Java Code Review</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="errors">
+  <header class="topbar">
+    <a class="back-btn" href="index.html">&lt;- Home</a>
+    <span class="topbar-title">Errors</span>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation"><span class="menu-bars" aria-hidden="true"></span></button>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="content">
+      <h1>Errors</h1>
+      <p class="lead">Every programmer writes broken code. Knowing which <em>kind</em> of error
+        you have is the fastest way to fix it.</p>
+
+      <!-- Section: overview -->
+      <section id="overview" class="section">
+        <h2>Types of Errors</h2>
+        <table class="data-table">
+          <thead><tr><th>Type</th><th>When it happens</th><th>Typical symptom</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Syntax</strong></td><td>While compiling</td><td>The program will not compile.</td></tr>
+            <tr><td><strong>Runtime</strong></td><td>While running</td><td>The program crashes with an exception.</td></tr>
+            <tr><td><strong>Logic</strong></td><td>While running</td><td>It runs, but gives the wrong answer.</td></tr>
+          </tbody>
+        </table>
+        <div class="callout note">
+          <strong>Note:</strong> syntax errors are the easiest - the compiler points at them.
+          Logic errors are the hardest - nothing complains; you must reason and test.
+        </div>
+      </section>
+
+      <!-- Section: syntax -->
+      <section id="syntax" class="section">
+        <h2>Syntax Errors</h2>
+        <p>A syntax error breaks the grammar rules of Java. The code cannot compile, so the
+          compiler reports the line and what it expected.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Broken.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">int x = 5   // ERROR: missing semicolon at the end of the statement
+System.out.println("hi"); // plus a missing closing brace for the method
+
+// Common causes:
+//  - forgetting a semicolon ;
+//  - unbalanced braces { }
+//  - a misspelled keyword (e.g. "pulic" instead of "public")</code></pre>
+        </figure>
+        <div class="callout warning">
+          <strong>Fix:</strong> read the compiler message - it tells you the file and line number,
+          even if the real mistake is on the line just before.
+        </div>
+      </section>
+
+      <!-- Section: runtime -->
+      <section id="runtime" class="section">
+        <h2>Runtime Errors</h2>
+        <p>The code compiles, but something goes wrong while it runs - often an
+          <strong>exception</strong> that stops the program.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Runtime.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">int a = 10, b = 0;
+System.out.println(a / b);   // ArithmeticException: / by zero
+
+int[] nums = {1, 2, 3};
+System.out.println(nums[5]);  // ArrayIndexOutOfBoundsException
+
+String s = null;
+System.out.println(s.length()); // NullPointerException</code></pre>
+        </figure>
+        <p>The program prints a <em>stack trace</em> - read the first line to see the exception
+          and the message, and the following lines to see where it happened.</p>
+      </section>
+
+      <!-- Section: logic -->
+      <section id="logic" class="section">
+        <h2>Logic Errors</h2>
+        <p>The program compiles and runs without crashing, but does the wrong thing. The mistake
+          is in your <em>reasoning</em>, not the syntax.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Logic.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">int length = 7, width = 2;
+
+// WRONG: area should be length * width, not length + width
+int area = length + width;   // gives 9, but the correct area is 14
+
+// Also watch integer division:
+double average = (7 + 8) / 2; // intended 7.5, but int math gives 7</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: debugging -->
+      <section id="debugging" class="section">
+        <h2>Debugging</h2>
+        <p><strong>Debugging</strong> is the process of finding and fixing errors. Simple
+          techniques first, tools later.</p>
+        <ol>
+          <li><strong>Print statements</strong> - print values at key points to see what is really happening.</li>
+          <li><strong>Read the error message</strong> - the exception type and line number are clues, not noise.</li>
+          <li><strong>Rubber-duck test</strong> - explain the code out loud, line by line.</li>
+          <li><strong>Isolate</strong> - comment sections out to narrow down where it breaks.</li>
+          <li><strong>Use the IDE debugger</strong> - set breakpoints and step through line by line.</li>
+        </ol>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Debug.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">int total = 0;
+for (int i = 1; i &lt;= 5; i++) {
+    total += i;
+    System.out.println("i=" + i + " total=" + total); // trace the state each pass
+}</code></pre>
+        </figure>
+        <div class="callout tip">
+          <strong>Tip:</strong> a bug you can reproduce is already half solved - find the smallest
+          input that triggers it, then investigate from there.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!-- ==========================================================================
+     keyboard-input.html - Topic 5: Keyboard Input
+     Sections: overview, import, setup, read, gotchas
+     ========================================================================== -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keyboard Input - Java Code Review</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="keyboard-input">
+  <header class="topbar">
+    <a class="back-btn" href="index.html">&lt;- Home</a>
+    <span class="topbar-title">Keyboard Input</span>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation"><span class="menu-bars" aria-hidden="true"></span></button>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="content">
+      <h1>Keyboard Input</h1>
+      <p class="lead">Programs become interactive when they can read what the user types.
+        In Java that takes just three steps using the <code>Scanner</code> class.</p>
+
+      <!-- Section: overview -->
+      <section id="overview" class="section">
+        <h2>Why Keyboard Input?</h2>
+        <p>So far our programs have fixed values. Reading from the keyboard lets a user supply
+          values at runtime - names, numbers, choices - instead of hard-coding them.</p>
+        <p>Java reads input with a <strong>Scanner</strong>, a class in the <code>java.util</code> package.</p>
+        <div class="callout info">
+          <strong>The 3 steps:</strong> (1) import Scanner, (2) create a Scanner object,
+          (3) call a scan method to read a value.
+        </div>
+      </section>
+
+      <!-- Section: import -->
+      <section id="import" class="section">
+        <h2>Step 1: Import Scanner</h2>
+        <p>Put this import at the very top of the file, above the class:</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Step 1</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">import java.util.Scanner; // makes the Scanner class available to your program</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: setup -->
+      <section id="setup" class="section">
+        <h2>Step 2: Create a Scanner</h2>
+        <p>Create one Scanner object and connect it to the keyboard (<code>System.in</code>).
+          Do this once, at the start of <code>main</code>.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Step 2</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">Scanner input = new Scanner(System.in); // "input" is just a name you choose
+// later, when finished: input.close(); // releases the resource</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: read -->
+      <section id="read" class="section">
+        <h2>Step 3: Read Input</h2>
+        <p>Call the read method that matches the type you expect. Each of these waits for
+          the user to type a value and press Enter.</p>
+        <table class="data-table">
+          <thead><tr><th>Method</th><th>Reads</th></tr></thead>
+          <tbody>
+            <tr><td><code>nextInt()</code></td><td>an integer</td></tr>
+            <tr><td><code>nextDouble()</code></td><td>a decimal number</td></tr>
+            <tr><td><code>next()</code></td><td>one word (up to whitespace)</td></tr>
+            <tr><td><code>nextLine()</code></td><td>an entire line of text</td></tr>
+            <tr><td><code>nextBoolean()</code></td><td><code>true</code> or <code>false</code></td></tr>
+          </tbody>
+        </table>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Greeting.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">import java.util.Scanner;                    // (1) import
+
+public class Greeting {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);  // (2) create the Scanner
+
+        System.out.print("Enter your name: ");
+        String name = input.nextLine();          // (3) read a whole line
+
+        System.out.print("Enter your age: ");
+        int age = input.nextInt();               // (3) read an integer
+
+        System.out.println("Hi " + name + ", you are " + age + ".");
+    }
+}</code></pre>
+        </figure>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Console</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code>Enter your name: Ada
+Enter your age: 21
+Hi Ada, you are 21.</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: gotchas -->
+      <section id="gotchas" class="section">
+        <h2>nextInt vs nextLine</h2>
+        <p>This is the classic beginner trap. <code>nextInt()</code> reads only the number and
+          leaves the Enter key (a leftover newline) in the input buffer. The following
+          <code>nextLine()</code> then reads that empty leftover instead of the user's text.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Gotcha.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">System.out.print("Enter your age: ");
+int age = input.nextInt();        // reads 21, but leaves the newline behind
+
+String city = input.nextLine();   // PROBLEM: returns "" (the leftover newline)
+
+// FIX: consume the leftover newline with an extra nextLine() call
+input.nextLine();                 // eat the Enter key
+System.out.print("Enter your city: ");
+String city2 = input.nextLine();  // now correctly reads the city name</code></pre>
+        </figure>
+        <div class="callout warning">
+          <strong>Rule of thumb:</strong> after any numeric read (<code>nextInt</code>,
+          <code>nextDouble</code>, ...), add one <code>input.nextLine();</code> before you read a
+          line of text.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

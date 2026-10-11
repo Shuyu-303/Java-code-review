@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!-- ==========================================================================
+     methods.html - Topic 17: Methods
+     Sections: overview, structure, declaring, parameters, return, calling, example
+     ========================================================================== -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Methods - Java Code Review</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="methods">
+  <header class="topbar">
+    <a class="back-btn" href="index.html">&lt;- Home</a>
+    <span class="topbar-title">Methods</span>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation"><span class="menu-bars" aria-hidden="true"></span></button>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="content">
+      <h1>Methods</h1>
+      <p class="lead">A method is a named block of code that performs one task. Name the task
+        once, then call it as often as you like.</p>
+
+      <!-- Section: overview -->
+      <section id="overview" class="section">
+        <h2>Purpose of Methods</h2>
+        <p>Breaking a program into methods pays off in many ways:</p>
+        <ul>
+          <li><strong>Reuse</strong> - carry out repetitive tasks without copy-pasting.</li>
+          <li><strong>Structure</strong> - give the program a clear, logical shape.</li>
+          <li><strong>Debuggability</strong> - fix a bug in one place instead of many.</li>
+          <li><strong>Teamwork</strong> - divide work among people, one method at a time.</li>
+          <li><strong>Readability</strong> - a good method name explains what the code does.</li>
+        </ul>
+        <div class="callout tip">
+          <strong>Naming:</strong> methods start with a lowercase letter, have no spaces, and use a
+          <em>verb</em> that describes the action - <code>calculateTotal()</code>,
+          <code>printReport()</code>, <code>isValid()</code>.
+        </div>
+      </section>
+
+      <!-- Section: structure -->
+      <section id="structure" class="section">
+        <h2>Structure and Syntax</h2>
+        <p>The general shape of a method is:</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Method syntax</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">public static returnType methodName(parameterList) {
+    // method body - the steps this method performs
+    return value; // only if returnType is not void
+}</code></pre>
+        </figure>
+        <table class="data-table">
+          <thead><tr><th>Part</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td><code>public</code></td><td>Access modifier - who may call it.</td></tr>
+            <tr><td><code>static</code></td><td>Belongs to the class itself (callable without an object).</td></tr>
+            <tr><td><code>returnType</code></td><td>What the method gives back - or <code>void</code> for nothing.</td></tr>
+            <tr><td><code>methodName</code></td><td>A verb describing the task, starting lowercase.</td></tr>
+            <tr><td><code>(parameterList)</code></td><td>Inputs the method needs, with their types.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Section: declaring -->
+      <section id="declaring" class="section">
+        <h2>Declaring a Method</h2>
+        <p>Declaring (defining) a method means writing its header and body. Here is a method that
+          adds two numbers:</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Declare.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">// Returns the sum of a and b.
+// "int" before the name = the type of value it returns.
+public static int add(int a, int b) {
+    return a + b;   // hand the result back to the caller
+}</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: parameters -->
+      <section id="parameters" class="section">
+        <h2>Parameters</h2>
+        <p><strong>Parameters</strong> are the inputs declared in the parentheses. When you call the
+          method, the values you pass (the <em>arguments</em>) are copied into those parameters.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Parameters.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">public static int add(int a, int b) {   // a and b are PARAMETERS
+    return a + b;
+}
+
+// elsewhere...
+int total = add(3, 5);   // 3 and 5 are ARGUMENTS copied into a and b
+
+// A method can also take no parameters:
+public static void sayHi() {
+    System.out.println("Hi!");
+}</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: return -->
+      <section id="return" class="section">
+        <h2>Return Types</h2>
+        <p>If a method produces a value, its return type names that value's type and the body must
+          <code>return</code> it. If it produces nothing, use <code>void</code>.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Returns.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">// void: performs an action, returns nothing
+public static void greet(String name) {
+    System.out.println("Hello, " + name);
+    // no return statement needed
+}
+
+// double: computes and returns a value
+public static double average(int x, int y) {
+    return (x + y) / 2.0;   // return sends this value back
+}</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: calling -->
+      <section id="calling" class="section">
+        <h2>Calling Methods</h2>
+        <p>To run a method, write its name and pass any arguments. If it returns a value, you can
+          store or use that value.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Calling.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">greet("Ada");                  // call a void method: just run it
+
+double avg = average(4, 7);    // call a value-returning method and store the result
+System.out.println(avg);       // 5.5
+
+// You can also use the result directly:
+System.out.println(add(10, 20)); // 30</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: example -->
+      <section id="example" class="section">
+        <h2>Full Example</h2>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Calculator.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">public class Calculator {
+
+    // Returns the sum of two whole numbers.
+    public static int add(int a, int b) {
+        return a + b;
+    }
+
+    // Returns the larger of two numbers.
+    public static int max(int a, int b) {
+        return a &gt; b ? a : b;    // ternary: a if a &gt; b, otherwise b
+    }
+
+    public static void main(String[] args) {
+        int sum = add(3, 5);          // call add -> 8
+        System.out.println(sum);      // 8
+
+        int bigger = max(4, 9);       // call max -> 9
+        System.out.println(bigger);   // 9
+    }
+}</code></pre>
+        </figure>
+        <div class="callout example">
+          <strong>Why it helps:</strong> if <code>add</code> had a bug, you would fix it in one
+          place - and every caller benefits.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

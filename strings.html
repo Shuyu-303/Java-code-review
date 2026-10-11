@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!-- ==========================================================================
+     strings.html - Topic 18: Strings
+     Sections: what, create, methods, detailed, loop
+     ========================================================================== -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strings - Java Code Review</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="strings">
+  <header class="topbar">
+    <a class="back-btn" href="index.html">&lt;- Home</a>
+    <span class="topbar-title">Strings</span>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation"><span class="menu-bars" aria-hidden="true"></span></button>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="content">
+      <h1>Strings</h1>
+      <p class="lead">A <code>String</code> is a sequence of characters - text. It is one of the
+        most-used types in Java, and it comes with a large toolbox of helpful methods.</p>
+
+      <!-- Section: what -->
+      <section id="what" class="section">
+        <h2>What Is a String?</h2>
+        <p>A <code>String</code> holds text such as a name, a message, or a whole sentence. Two
+          things to remember:</p>
+        <ul>
+          <li>It is a <strong>reference type</strong> (a class), not one of the eight primitives.</li>
+          <li>It is <strong>immutable</strong> - String methods <em>return a new string</em>; they
+            never change the original.</li>
+        </ul>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Intro.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">String greeting = "Hello, world!"; // a sequence of characters in double quotes
+System.out.println(greeting.length()); // 13 (counts every character)</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: create -->
+      <section id="create" class="section">
+        <h2>Creating Strings</h2>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Create.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">String a = "Java";              // string literal (preferred)
+String b = new String("Java");  // explicitly creates a new object
+String empty = "";              // an empty string (length 0)
+
+// Use .equals() to compare text, NOT ==
+System.out.println(a.equals(b)); // true  (same characters)
+System.out.println(a == b);      // false (different objects)</code></pre>
+        </figure>
+        <div class="callout warning">
+          <strong>Important:</strong> never compare strings with <code>==</code> - it checks whether
+          they are the same object. Use <code>equals()</code> to compare their contents.
+        </div>
+      </section>
+
+      <!-- Section: methods -->
+      <section id="methods" class="section">
+        <h2>String Methods Overview</h2>
+        <table class="data-table">
+          <thead><tr><th>Method</th><th>What it does</th></tr></thead>
+          <tbody>
+            <tr><td><code>charAt(i)</code></td><td>Character at index <code>i</code>.</td></tr>
+            <tr><td><code>indexOf(s)</code></td><td>First index of <code>s</code> (-1 if absent).</td></tr>
+            <tr><td><code>lastIndexOf(s)</code></td><td>Last index of <code>s</code>.</td></tr>
+            <tr><td><code>length()</code></td><td>Number of characters.</td></tr>
+            <tr><td><code>substring(a, b)</code></td><td>Text from index <code>a</code> up to (not including) <code>b</code>.</td></tr>
+            <tr><td><code>contains(s)</code></td><td>Whether <code>s</code> appears.</td></tr>
+            <tr><td><code>startsWith(s)</code> / <code>endsWith(s)</code></td><td>Whether it begins / ends with <code>s</code>.</td></tr>
+            <tr><td><code>equals(s)</code> / <code>equalsIgnoreCase(s)</code></td><td>Content equality (case-sensitive / insensitive).</td></tr>
+            <tr><td><code>compareTo(s)</code></td><td>Alphabetical comparison (0 if identical).</td></tr>
+            <tr><td><code>replace(a, b)</code></td><td>Replace all occurrences of <code>a</code> with <code>b</code>.</td></tr>
+            <tr><td><code>replaceAll(regex, b)</code></td><td>Replace everything matching a regex.</td></tr>
+            <tr><td><code>replaceFirst(a, b)</code></td><td>Replace only the first occurrence.</td></tr>
+            <tr><td><code>toLowerCase()</code> / <code>toUpperCase()</code></td><td>Convert case.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Section: detailed -->
+      <section id="detailed" class="section">
+        <h2>Method Details</h2>
+        <p>Indexes start at 0. The example below uses <code>s = "Hello, World"</code>.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">StringMethods.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">String s = "Hello, World";
+
+s.charAt(0);          // 'H'    character at index 0
+s.length();           // 12     total characters
+s.indexOf("World");   // 7      first index of "World"
+s.lastIndexOf("l");   // 10     index of the LAST 'l'
+s.substring(7);       // "World"       from index 7 to the end
+s.substring(0, 5);    // "Hello"       from 0 up to (not including) 5
+s.contains("World");  // true
+s.startsWith("He");   // true
+s.endsWith("ld");     // true
+s.equals("hello, world");        // false (case-sensitive)
+s.equalsIgnoreCase("hello, world"); // true
+s.compareTo("Hello");            // positive: "Hello, World" sorts after "Hello"
+s.replace("l", "L");             // "HeLLo, WorLd"  (all occurrences)
+s.replaceFirst("l", "L");        // "HeLlo, World"  (only the first)
+s.replaceAll("[aeiou]", "*");    // "H*ll*, W*rld"  (regex: replace every vowel)
+s.toLowerCase();                 // "hello, world"
+s.toUpperCase();                 // "HELLO, WORLD"</code></pre>
+        </figure>
+        <div class="callout tip">
+          <strong>Remember:</strong> none of these change <code>s</code>. They return a
+          <em>new</em> String, so store the result if you want to keep it:
+          <code>s = s.toUpperCase();</code>
+        </div>
+      </section>
+
+      <!-- Section: loop -->
+      <section id="loop" class="section">
+        <h2>Looping Through a String</h2>
+        <p>Because characters are indexed, a <code>for</code> loop can visit each one in turn.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">WalkString.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">String word = "Java";
+
+// Visit each character by index
+for (int i = 0; i &lt; word.length(); i++) {
+    System.out.println(word.charAt(i)); // J, then a, then v, then a
+}</code></pre>
+        </figure>
+        <p>A common use is processing the <em>digits</em> inside a string - for example, adding up
+          all the digits of <code>"12345"</code>:</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">SumDigits.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">String digits = "12345";
+int sum = 0;
+
+for (int i = 0; i &lt; digits.length(); i++) {
+    char c = digits.charAt(i);   // e.g. '1'
+    sum += c - '0';              // subtract '0' to turn the char into its digit value
+}
+
+System.out.println(sum);         // 15  (1 + 2 + 3 + 4 + 5)</code></pre>
+        </figure>
+        <div class="callout example">
+          <strong>Why <code>c - '0'</code>?</strong> A <code>char</code> is really a number
+          (its ASCII code). The digit <code>'1'</code> is code 49 and <code>'0'</code> is 48, so
+          <code>49 - 48 = 1</code> gives the numeric value.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

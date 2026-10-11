@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!-- ==========================================================================
+     installation.html - Topic 2: Installation
+     Sections: download, install, path, verify, ide
+     ========================================================================== -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Installation - Java Code Review</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="installation">
+  <!-- Top bar with back-to-home button -->
+  <header class="topbar">
+    <a class="back-btn" href="index.html">&lt;- Home</a>
+    <span class="topbar-title">Installation</span>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation"><span class="menu-bars" aria-hidden="true"></span></button>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="content">
+      <h1>Installation</h1>
+      <p class="lead">To write Java you need the JDK (Java Development Kit). Here is the whole
+        process, from download to a verified install.</p>
+
+      <!-- Section: download -->
+      <section id="download" class="section">
+        <h2>Download the JDK</h2>
+        <p>Get a JDK from a well-known vendor (Oracle JDK or the open-source OpenJDK / Eclipse Temurin).
+          Choose the installer for your operating system and pick a recent LTS version such as Java&nbsp;17 or 21.</p>
+        <ul>
+          <li><strong>Windows</strong> - download the <code>.msi</code> or <code>.exe</code> installer.</li>
+          <li><strong>macOS</strong> - download the <code>.dmg</code> (or use a package manager).</li>
+          <li><strong>Linux</strong> - download the <code>.tar.gz</code> or use your package manager.</li>
+        </ul>
+      </section>
+
+      <!-- Section: install -->
+      <section id="install" class="section">
+        <h2>Installing the JDK</h2>
+        <ol>
+          <li>Run the installer you downloaded.</li>
+          <li>Accept the license and keep the default installation folder.</li>
+          <li>Let the installer finish, then close it.</li>
+        </ol>
+        <div class="callout tip">
+          <strong>Tip:</strong> Remember the install path (for example
+          <code>C:\Program Files\Java\jdk-21</code>). You will need it for the PATH step.
+        </div>
+      </section>
+
+      <!-- Section: path -->
+      <section id="path" class="section">
+        <h2>Setting the PATH</h2>
+        <p>Adding Java's <code>bin</code> folder to your system <code>PATH</code> lets you run
+          <code>javac</code> and <code>java</code> from any terminal.</p>
+        <p><strong>Windows:</strong> System Properties -> Environment Variables -> edit <code>Path</code> ->
+          add the JDK's <code>bin</code> directory.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Example PATH entry</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code>C:\Program Files\Java\jdk-21\bin</code></pre>
+        </figure>
+        <p><strong>macOS / Linux (bash):</strong> add the following to your shell profile
+          (<code>~/.bashrc</code> or <code>~/.zshrc</code>):</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">~/.bashrc</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code>export JAVA_HOME=/path/to/jdk-21
+export PATH="$JAVA_HOME/bin:$PATH"</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: verify -->
+      <section id="verify" class="section">
+        <h2>Verify Installation</h2>
+        <p>Open a <em>new</em> terminal and run these two commands. Each should print a version number.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Terminal</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code>java -version
+javac -version</code></pre>
+        </figure>
+        <div class="callout example">
+          <strong>Expected output:</strong> something like
+          <code>java version "21.0.1"</code>. If you instead see "command not found",
+          the PATH step was not applied - reopen the terminal and try again.
+        </div>
+      </section>
+
+      <!-- Section: ide -->
+      <section id="ide" class="section">
+        <h2>Choosing an IDE</h2>
+        <p>An IDE (Integrated Development Environment) makes coding, running, and debugging much easier.
+          Popular choices include:</p>
+        <table class="data-table">
+          <thead><tr><th>IDE</th><th>Good for</th></tr></thead>
+          <tbody>
+            <tr><td>IntelliJ IDEA</td><td>Professional Java development; excellent refactoring.</td></tr>
+            <tr><td>Eclipse</td><td>Free, long-established, plugin-rich.</td></tr>
+            <tr><td>VS Code</td><td>Lightweight, great with the Java extension pack.</td></tr>
+          </tbody>
+        </table>
+        <div class="callout note">
+          <strong>Note:</strong> You can start with a plain text editor and the command line,
+          then move to an IDE once you are comfortable.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

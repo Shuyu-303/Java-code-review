@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!-- ==========================================================================
+     switch.html - Topic 15: Switch
+     Sections: overview, syntax, multiple, default, flowchart, limitations
+     ========================================================================== -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Switch - Java Code Review</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="switch">
+  <header class="topbar">
+    <a class="back-btn" href="index.html">&lt;- Home</a>
+    <span class="topbar-title">Switch</span>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation"><span class="menu-bars" aria-hidden="true"></span></button>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="content">
+      <h1>Switch</h1>
+      <p class="lead">A <code>switch</code> statement selects one branch from many based on the
+        value of a single variable. It is a cleaner alternative to a long ladder of
+        <code>else if</code> statements.</p>
+
+      <!-- Section: overview -->
+      <section id="overview" class="section">
+        <h2>Overview and When to Use</h2>
+        <p>When you compare one value against many specific possibilities, a <code>switch</code> is
+          tidier than repeated <code>if/else</code>. For example, branching on the 13 face values of
+          a card would need a long chain of <code>if/else</code> statements - but reads naturally as
+          a <code>switch</code>.</p>
+        <div class="callout info">
+          <strong>Use switch when:</strong> you are testing <em>one variable</em> for
+          <em>equality</em> against a list of fixed values.
+        </div>
+      </section>
+
+      <!-- Section: syntax -->
+      <section id="syntax" class="section">
+        <h2>Syntax with -&gt;</h2>
+        <p>Modern Java uses the arrow form <code>-&gt;</code>. Each case names a value and the action
+          to take. No <code>break</code> is needed - only the matching case runs.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">DaySwitch.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">int day = 3;
+
+switch (day) {                              // the value being tested
+    case 1 -&gt; System.out.println("Monday");
+    case 2 -&gt; System.out.println("Tuesday");
+    case 3 -&gt; System.out.println("Wednesday"); // 3 matches here
+    case 4 -&gt; System.out.println("Thursday");
+    case 5 -&gt; System.out.println("Friday");
+    default -&gt; System.out.println("Weekend");  // if nothing matched
+}
+// Output: Wednesday</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: multiple -->
+      <section id="multiple" class="section">
+        <h2>Multiple Labels</h2>
+        <p>One case can match several values by listing them, separated by commas. This is
+          perfect when several inputs should lead to the same action.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Menu.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">char choice = 'A';
+
+switch (choice) {
+    case 'a', 'A', '1' -&gt; System.out.println("you chose the first option.");
+    case 'b', 'B', '2' -&gt; System.out.println("you chose the second option.");
+    default -&gt; System.out.println("unknown option");
+}
+// Output: you chose the first option.</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: default -->
+      <section id="default" class="section">
+        <h2>The default Statement</h2>
+        <p><code>default</code> runs when none of the cases match. It works like the final
+          <code>else</code> in an <code>if/else</code> chain - a safe fallback.</p>
+        <div class="callout tip">
+          <strong>Best practice:</strong> always include a <code>default</code> so unexpected values
+          are handled instead of silently ignored.
+        </div>
+      </section>
+
+      <!-- Section: flowchart -->
+      <section id="flowchart" class="section">
+        <h2>Flowchart</h2>
+        <p>The switch evaluates its expression once, then jumps straight to the matching case.</p>
+        <figure class="flowchart">
+          <svg viewBox="0 0 420 310" width="420" height="310" role="img" aria-label="switch flowchart">
+            <defs>
+              <marker id="arr-sw" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+                <path d="M0,0 L8,3 L0,6 Z" fill="#475569"></path>
+              </marker>
+            </defs>
+            <g font-family="Segoe UI, sans-serif" font-size="12" fill="#1e293b" text-anchor="middle">
+              <ellipse cx="210" cy="22" rx="60" ry="16" fill="#dcfce7" stroke="#16a34a"></ellipse>
+              <text x="210" y="26">Start</text>
+              <line x1="210" y1="38" x2="210" y2="46" stroke="#475569" marker-end="url(#arr-sw)"></line>
+              <polygon points="210,48 330,80 210,112 90,80" fill="#fef3c7" stroke="#d97706"></polygon>
+              <text x="210" y="84">match value?</text>
+              <line x1="210" y1="112" x2="85" y2="148" stroke="#475569" marker-end="url(#arr-sw)"></line>
+              <line x1="210" y1="112" x2="210" y2="148" stroke="#475569" marker-end="url(#arr-sw)"></line>
+              <line x1="210" y1="112" x2="335" y2="148" stroke="#475569" marker-end="url(#arr-sw)"></line>
+              <rect x="30" y="150" width="110" height="40" rx="8" fill="#dbeafe" stroke="#2563eb"></rect>
+              <text x="85" y="175">case 1</text>
+              <rect x="155" y="150" width="110" height="40" rx="8" fill="#dbeafe" stroke="#2563eb"></rect>
+              <text x="210" y="175">case 2</text>
+              <rect x="280" y="150" width="110" height="40" rx="8" fill="#ede9fe" stroke="#7c3aed"></rect>
+              <text x="335" y="175">default</text>
+              <line x1="85" y1="190" x2="85" y2="230" stroke="#475569"></line>
+              <line x1="335" y1="190" x2="335" y2="230" stroke="#475569"></line>
+              <line x1="85" y1="230" x2="335" y2="230" stroke="#475569"></line>
+              <line x1="210" y1="230" x2="210" y2="258" stroke="#475569" marker-end="url(#arr-sw)"></line>
+              <ellipse cx="210" cy="278" rx="60" ry="16" fill="#fee2e2" stroke="#dc2626"></ellipse>
+              <text x="210" y="282">End</text>
+            </g>
+          </svg>
+          <figcaption>Figure: exactly one branch (or <code>default</code>) is chosen.</figcaption>
+        </figure>
+      </section>
+
+      <!-- Section: limitations -->
+      <section id="limitations" class="section">
+        <h2>Limitations</h2>
+        <table class="data-table">
+          <thead><tr><th>Limitation</th><th>What it means</th></tr></thead>
+          <tbody>
+            <tr><td>One variable only</td><td>You test a single expression, not conditions across several variables.</td></tr>
+            <tr><td>Limited types</td><td>Works with <code>byte</code>, <code>short</code>, <code>char</code>, and <code>int</code> (plus <code>String</code> and enums).</td></tr>
+            <tr><td>Not for ranges</td><td>It matches exact values - you cannot test "between 1 and 10" directly.</td></tr>
+          </tbody>
+        </table>
+        <div class="callout warning">
+          <strong>Not good for:</strong> comparisons and inequalities (use <code>if/else</code>).
+          <strong>Great for:</strong> menu-type situations and fixed sets of choices.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!-- ==========================================================================
+     exceptions.html - Topic 16: Exceptions
+     Sections: overview, structure, example, multiple, finally, common
+     ========================================================================== -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exceptions - Java Code Review</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="exceptions">
+  <header class="topbar">
+    <a class="back-btn" href="index.html">&lt;- Home</a>
+    <span class="topbar-title">Exceptions</span>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation"><span class="menu-bars" aria-hidden="true"></span></button>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="content">
+      <h1>Exceptions</h1>
+      <p class="lead">An exception is a runtime problem that interrupts the normal flow of a
+        program. Instead of crashing, you can <em>catch</em> it and respond gracefully.</p>
+
+      <!-- Section: overview -->
+      <section id="overview" class="section">
+        <h2>What Is an Exception?</h2>
+        <p>An exception is an object that Java creates when something goes wrong at runtime - for
+          example dividing by zero or opening a missing file. If you do not handle it, the program
+          stops and prints a <em>stack trace</em>.</p>
+        <div class="callout info">
+          <strong>Exception vs error:</strong> an exception is a recoverable problem you can
+          <em>plan</em> for; an error (like <code>OutOfMemoryError</code>) usually is not.
+        </div>
+      </section>
+
+      <!-- Section: structure -->
+      <section id="structure" class="section">
+        <h2>try-catch Structure</h2>
+        <p>Wrap risky code in a <code>try</code> block and provide a <code>catch</code> block for the
+          type of exception you expect.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Structure</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">try {
+    // code that might throw an exception
+} catch (ExceptionType name) {
+    // code that runs ONLY if that exception happens
+}</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: example -->
+      <section id="example" class="section">
+        <h2>Example</h2>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Divide.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">public class Divide {
+    public static void main(String[] args) {
+        try {
+            int result = 10 / 0;              // throws ArithmeticException
+            System.out.println(result);       // this line is skipped
+        } catch (ArithmeticException e) {
+            System.out.println("Cannot divide by zero: " + e.getMessage());
+        }
+        System.out.println("Program continues"); // reached because we handled it
+    }
+}</code></pre>
+        </figure>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">Console</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code>Cannot divide by zero: / by zero
+Program continues</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: multiple -->
+      <section id="multiple" class="section">
+        <h2>Multiple catch Blocks</h2>
+        <p>You can handle different exception types separately. Order matters - put more specific
+          exceptions before more general ones.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">MultiCatch.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">try {
+    int[] nums = {1, 2, 3};
+    System.out.println(nums[5]);         // ArrayIndexOutOfBoundsException
+} catch (ArrayIndexOutOfBoundsException e) {
+    System.out.println("Bad index: " + e.getMessage());
+} catch (ArithmeticException e) {
+    System.out.println("Math problem: " + e.getMessage());
+} catch (Exception e) {                   // catch-all - must come LAST
+    System.out.println("Something went wrong");
+}</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: finally -->
+      <section id="finally" class="section">
+        <h2>The finally Block</h2>
+        <p>A <code>finally</code> block runs <em>no matter what</em> - whether or not an exception
+          occurred. Use it to release resources.</p>
+        <figure class="code-block">
+          <figcaption class="code-header"><span class="code-title">FinallyDemo.java</span><button class="copy-btn" type="button">Copy</button></figcaption>
+          <pre><code data-lang="java">import java.util.Scanner;
+
+public class FinallyDemo {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        try {
+            int n = input.nextInt();
+            System.out.println("You entered " + n);
+        } catch (Exception e) {
+            System.out.println("Please enter a valid number");
+        } finally {
+            input.close();  // ALWAYS runs - good place to clean up
+        }
+    }
+}</code></pre>
+        </figure>
+      </section>
+
+      <!-- Section: common -->
+      <section id="common" class="section">
+        <h2>Common Exceptions</h2>
+        <table class="data-table">
+          <thead><tr><th>Exception</th><th>Common cause</th></tr></thead>
+          <tbody>
+            <tr><td><code>ArithmeticException</code></td><td>Dividing an integer by zero.</td></tr>
+            <tr><td><code>NullPointerException</code></td><td>Using a variable that is <code>null</code>.</td></tr>
+            <tr><td><code>ArrayIndexOutOfBoundsException</code></td><td>Using an index outside the array.</td></tr>
+            <tr><td><code>InputMismatchException</code></td><td>Reading the wrong type with Scanner.</td></tr>
+            <tr><td><code>NumberFormatException</code></td><td>Converting non-numeric text to a number.</td></tr>
+          </tbody>
+        </table>
+        <div class="callout tip">
+          <strong>Tip:</strong> handle exceptions you can actually recover from. Avoid empty
+          <code>catch</code> blocks - silently swallowing a problem makes bugs much harder to find.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
